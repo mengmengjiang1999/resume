@@ -1,25 +1,13 @@
-SRC = $(wildcard *.tex)
+TEX_ENGINE ?= xelatex
+OUT_DIR := output/pdf
 
-PDFS = $(SRC:.tex=.pdf)
+.PHONY: all pdf clean
+all: pdf
 
-all:	clean pdf
-
-en:	clean xelatex resume.tex
-
-zh_CN:	clean xelatex resume-zh_CN.tex
-
-pdf:	clean $(PDFS)
-
-%.pdf:  %.tex
-	xelatex $<
-
-ifeq ($(OS),Windows_NT)
-  # on Windows
-  RM = cmd //C del
-else
-  # on Unix/Linux
-  RM = rm -f
-endif
+pdf:
+	mkdir -p $(OUT_DIR)
+	$(TEX_ENGINE) -interaction=nonstopmode -halt-on-error -output-directory=$(OUT_DIR) resume.tex
+	$(TEX_ENGINE) -interaction=nonstopmode -halt-on-error -output-directory=$(OUT_DIR) resume.tex
 
 clean:
-	$(RM) *.log *.aux *.bbl *.blg *.synctex.gz *.out *.toc *.lof *.idx *.ilg *.ind *.pdf
+	rm -f $(OUT_DIR)/*.log $(OUT_DIR)/*.aux $(OUT_DIR)/*.out

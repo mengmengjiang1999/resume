@@ -1,53 +1,30 @@
-# Résumé
+# 陈张萌 · 技术简历
 
-Hit branch [zh_CN](https://github.com/billryan/resume/tree/zh_CN) if you want a Simplified Chinese résumé.
+中文单页简历，沿用原项目 `resume.cls` 的单栏布局与分节横线。
 
-中文用户请前往 [zh_CN](https://github.com/billryan/resume/tree/zh_CN) 分支。
+- 主文件：`resume.tex`
+- 输出：`output/pdf/resume.pdf`
+- 内容依据：用户提供的 `tech_resume_template.tex`，包含个人信息、教育背景及当前工作经历；不添加未经确认的业绩指标。
 
-An elegant \LaTeX\ résumé template, compiled with \XeLaTeX. Inspired by 
+## 本地编译
 
-- [zachscrivena/simple-resume-cv](https://github.com/zachscrivena/simple-resume-cv)
-- [res](https://www.ctan.org/pkg/res)
-- [JianXu's CV](http://www.jianxu.net/en/files/JianXu_CV.pdf)
-- [paciorek's CV/Resume template](http://www.stat.berkeley.edu/~paciorek/computingTips/Latex_template_creating_CV_.html)
-- [How to write a LaTeX class file and design your own CV (Part 1) - ShareLaTeX](https://www.sharelatex.com/blog/2011/03/27/how-to-write-a-latex-class-file-and-design-your-own-cv.html)
+安装包含 XeLaTeX 和 xeCJK 的 TeX 发行版后，在项目根目录运行：
 
-## Features
-
-- Easy to further customize or extend
-- Full support for unicode characters (e.g. CJK) with \XeLaTeX\
-- Perfect Simplified Chinese fonts supported with Adobefonts
-- FontAwesome 4.6.3 support
-
-## Quick Start
-- Fork this repository
-- Add information about you directly in GitHub
-- Compile TeX file to PDF with [LaTeX.Online](https://latexonline.cc/)
-- Can also use Overleaf for online compilation with [template](https://www.overleaf.com/latex/templates/bill-ryans-elegant-latex-resume/xcqmhktmzmsw)
-
-### Sample Output
-
-![English](https://user-images.githubusercontent.com/25968335/131621921-65ab1862-1f56-47ef-9d58-8d5149bec841.png)
-![English with photo](https://user-images.githubusercontent.com/25968335/131621960-1cafb3c2-114b-4e90-8b04-bd9b949a6e9d.png)
-![简体中文](https://user-images.githubusercontent.com/25968335/131621980-c004f2a6-4199-4676-8a97-5d2cb165402f.png)
-
-- [English PDF](https://github.com/billryan/resume/files/3463503/resume.pdf)
-- [English with photo PDF](https://github.com/billryan/resume/files/3463501/resume_photo.pdf)
-- [简体中文 PDF](https://github.com/billryan/resume/files/3463502/resume-zh_CN.pdf)
-
-## Usage
-
-1. Edit in Overleaf online Web [template](https://www.overleaf.com/latex/templates/bill-ryans-elegant-latex-resume/xcqmhktmzmsw)
-2. Compile tex on your Computer
-
-If you only need a résumé in English or have installed Adobe Simplified Chinese on your OS, **It would be better to clone only the master branch,** since the Simplified Chinese fonts files are too large.
-
-```
-git clone https://github.com/billryan/resume.git --branch master --depth 1 --single-branch <folder>
+```sh
+make
 ```
 
-## License
+也可以使用 Tectonic（首次运行需要联网下载 TeX 依赖）：
 
-[The MIT License (MIT)](http://opensource.org/licenses/MIT)
+```sh
+mkdir -p output/pdf
+tectonic --outdir output/pdf resume.tex
+```
 
-Copyrighted fonts are not subjected to this License.
+中文字体优先使用 macOS 宋体与黑体，其他系统回退到 Fandol；西文字体使用项目内置字体。
+
+修改后请检查 PDF 页数与视觉排版，保持 A4 一页。`make clean` 仅清理编译辅助文件，保留 PDF。生成的 PDF 默认由 `.gitignore` 排除。
+
+## 模板来源
+
+基于 [billryan/resume](https://github.com/billryan/resume)，沿用原项目 MIT 许可；字体遵循各自许可。

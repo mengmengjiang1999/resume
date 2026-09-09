@@ -1,80 +1,74 @@
 % !TEX program = xelatex
-
 \documentclass{resume}
-%\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
-%\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
+\usepackage{xeCJK}
+\IfFontExistsTF{Songti SC}
+  {\setCJKmainfont{Songti SC}[AutoFakeBold=2]}
+  {\setCJKmainfont{FandolSong-Regular}[BoldFont=FandolSong-Bold]}
+\IfFontExistsTF{Heiti SC}
+  {\setCJKsansfont{Heiti SC}[AutoFakeBold=2]}
+  {\setCJKsansfont{FandolHei-Regular}[BoldFont=FandolHei-Bold]}
+
+% Preserve the template's single-column layout and section rules.
+\geometry{left=1.65cm,right=1.65cm,top=1.35cm,bottom=1.35cm}
+\titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.3em}{0.65em}
+\titleformat{\subsection}{\normalsize\bfseries\raggedright}{}{0em}{}
+\titlespacing*{\subsection}{0pt}{0.85em}{0.3em}
+\setlist[itemize]{leftmargin=1.4em,topsep=0.3em,itemsep=0.25em,parsep=0pt}
+\linespread{1.15}
+\renewcommand{\name}[1]{\centerline{\Huge #1}\vspace{1.25ex}}
+\pdfstringdefDisableCommands{\def\quad{ }}
+\urlstyle{same}
+\hypersetup{pdftitle={陈张萌 - 技术简历},pdfauthor={陈张萌}}
 
 \begin{document}
-\pagenumbering{gobble} % suppress displaying page number
+\pagenumbering{gobble}
+\name{陈张萌}
+\begin{center}
+  \small \phone{18603560353}\quad\textperiodcentered\quad
+  \email{chenzhangmeng1999@gmail.com}\quad\textperiodcentered\quad 上海
+\end{center}
+\vspace{-0.8em}
 
-\name{Bin Yuan}
+\section{教育背景}
+\datedsubsection{清华大学\quad 计算机科学与技术系\quad 硕士}{2022 - 2025}
+\datedsubsection{清华大学\quad 计算机科学与技术系、新雅书院\quad 本科}{2017 - 2022}
 
-\basicInfo{
-  \email{yuanbin2014@gmail.com} \textperiodcentered\ 
-  \phone{(+86) 131-221-87xxx} \textperiodcentered\ 
-  \linkedin[billryan8]{https://www.linkedin.com/in/billryan8}}
+\section{专业技能}
+\textbf{编程语言：}C++、Python。\par
+\textbf{交易与行情：}因子计算、交易执行、订单状态管理、实时行情处理、本地订单簿重建。\par
+\textbf{系统开发：}共享内存、多线程、无锁队列、原子操作、性能分析与优化。\par
+\textbf{AI 辅助开发：}熟练使用 AI 编程工具辅助开发、调试、重构与问题排查。
 
-\section{\faGraduationCap\ Education}
-\datedsubsection{\textbf{Shanghai Jiao Tong University (SJTU)}, Shanghai, China}{2013 -- Present}
-\textit{Master student} in Electronics Engineering (EE), expected March 2016
-\datedsubsection{\textbf{Xidian University}, Shaanxi, China}{2009 -- 2013}
-\textit{B.S.} in Electronics Engineering (EE)
-
-\section{\faUsers\ Experience}
-\datedsubsection{\textbf{FLAG Inc.} California, America}{2012 -- Present}
-\role{Summer Intern}{Manager: xxx}
-Brief introduction: xxx.
+\section{工作经历}
+\datedsubsection{上海艾托邦人工智能有限公司}{2026 - 至今}
+开发工程师\quad |\quad 高频交易系统
 \begin{itemize}
-  \item Implemented xxx feature
-  \item Optimized xxx 5\%
-  \item xxx
+  \item 独立维护因子计算、ETF 执行、成分股多策略执行及本地订单簿模块，完整负责交易执行程序的订单状态管理。
 \end{itemize}
 
-\datedsubsection{\textbf{xxx Projects}}{Jan. 2015 -- Present}
-\role{C, Python, Django, Linux}{Individual Projects, collaborated with xxx}
-Brief introduction: xxx
+\subsection{高性能因子计算平台}
 \begin{itemize}
-  \item Implemented xxx feature
-  \item Optimized xxx 5\%
-  \item xxx
+  \item 维护实时行情接收、因子计算及结果输出链路，为交易策略提供因子数据。
+  \item 梳理关键计算路径，减少重复计算与数据拷贝，优化高行情负载下的计算性能和运行稳定性。
 \end{itemize}
 
-\datedsubsection{\textbf{\LaTeX\ résumé template}}{May. 2015 -- Present}
-\role{\LaTeX, Maintainer}{Individual Projects}
-An elegant \LaTeX\ résumé template, https://github.com/billryan/resume
+\subsection{ETF 交易执行程序}
 \begin{itemize}
-  \item Easy to be further customized or extended
-  \item Full support for unicode characters (e.g. CJK) with \XeLaTeX\
-  \item FontAwesome 4.5.0 support
+  \item 维护策略指令处理、委托生成、报撤单、成交回报与状态同步的完整执行链路。
+  \item 负责全部订单状态管理及异常处理，覆盖部分成交、拒单、撤单与状态恢复。
 \end{itemize}
 
-% Reference Test
-%\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}
-%An xxx optimized for xxx\cite{verma2015large}
-%\begin{itemize}
-%  \item main contribution
-%\end{itemize}
-
-\section{\faCogs\ Skills}
-\begin{itemize}[parsep=0.5ex]
-  \item Programming Languages: C == Python > C++ > Java
-  \item Platform: Linux
-  \item Development: Web, xxx
+\subsection{成分股多策略交易执行程序}
+\begin{itemize}
+  \item 接收不同策略的交易指令，生成订单并回传执行结果，维护多策略执行链路。
+  \item 按策略记录指令、订单与成交，负责策略级订单状态管理，支持成交归属、状态追踪及异常恢复。
 \end{itemize}
 
-\section{\faHeartO\ Honors and Awards}
-\datedline{\textit{\nth{1} Prize}, Award on xxx }{Jun. 2013}
-\datedline{Other awards}{2015}
-
-\section{\faInfo\ Miscellaneous}
-\begin{itemize}[parsep=0.5ex]
-  \item Blog: http://your.blog.me
-  \item GitHub: https://github.com/username
-  \item Languages: English - Fluent, Mandarin - Native speaker
+\subsection{本地订单簿重建模块}
+\begin{itemize}
+  \item 基于现有订单簿库接入逐笔委托与逐笔成交，重建本地买卖盘并写入共享内存，供策略程序读取。
+  \item 维护调用链路，排查运行问题并处理异常恢复；与柜台开发同事协作定位行情接口问题。
 \end{itemize}
 
-%% Reference
-%\newpage
-%\bibliographystyle{IEEETran}
-%\bibliography{mycite}
 \end{document}
